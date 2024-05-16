@@ -3,7 +3,7 @@
 namespace app\kahuna\api;
 
 require 'vendor/autoload.php';
-require 'helper/ApiHelper.php';
+// require 'helper/ApiHelper.php';
 use \AltoRouter;
 use app\kahuna\api\helper\ApiHelper;
 
@@ -14,32 +14,33 @@ ApiHelper::handleCors();
 /**----------------------*/
 
 $router = new AltoRouter();
-$router->setBasePath('/kahuna-laptop');
+$router->setBasePath('/kahuna-app');
+
 
 /**Agent Routes----------------------*/
-$router->map('GET', '/agent', 'AgentController#getInfo', 'get_info');
+$router->map('POST', '/agent/register', 'AgentController#register', 'agent_register');
+$router->map('GET', '/agent/info', 'AgentController#getInfo', 'get_info');
 /**----------------------*/
 
 
-/**Authentication Routes----------------------*/
-$router->map('POST', '/login', 'AuthController#login', 'auth_login');
-$router->map('POST', '/logout', 'AuthController#logout', 'auth_logout');
-$router->map('token', '/token', 'AuthController#verifyToken', 'auth_token');
+/**Agent Authentication Routes----------------------*/
+$router->map('POST', '/agent/login', 'AuthAgentController#login', 'auth_login');
+$router->map('POST', '/agent/logout', 'AuthAgentController#logout', 'auth_logout');
+$router->map('token', '/agent/token', 'AuthAgentController#verifyToken', 'auth_token');
 /**----------------------*/
 
-/**Product Routes----------------------*/
+/**Agent Product Routes----------------------*/
 $router->map('GET', '/products', 'ProductController#getAll', 'get_products');
 $router->map('GET', '/product/[i:id]', 'ProductController#get', 'get_product');
-$router->map('POST'. 'product', 'ProductController#newProduct', 'new_product');
+$router->map('POST'. 'product', 'ProductController#createProduct', 'create_product');
 /**----------------------*/
 
 /**Ticket Routes----------------------*/
 $router->map('GET', '/tickets', 'TicketController#getAll', 'get_tickets');
 $router->map('GET', '/ticket/[i:id]', 'TicketController#get', 'get_ticket');
 $router->map('POST', '/ticket', 'TicketController#newTicket', 'new_ticket');
-/**----------------------*/
+/**--------------------- -*/
 
-echo __NAMESPACE__;
 $match = $router->match();
 if(is_array($match)){
     $target = explode('#', $match['target']);
@@ -53,7 +54,7 @@ if(is_array($match)){
     if(isset($_SERVER['HTTP_X_API_KEY'])){
         $requestData['api_token'] = $_SERVER['HTTP_X_API_KEY'];
     }
-    call_user_func(__NAMESPACE__."\controller\\$class::$action", array($params, $requestData));
+    call_user_func(__NAMESPACE__."\controller\\$class::$method", $params, $requestData);
 }else{
     header($_SERVER['SERVER_PROTOCOL']. '404 Not Found');
 }

@@ -6,5 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'app\\kahuna\\' => array($baseDir . '/'),
+    'app\\kahuna\\api\\' => array($baseDir . '/'),
 );
