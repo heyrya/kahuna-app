@@ -4,7 +4,7 @@ namespace app\kahuna\api\controller;
 use app\kahuna\api\model\AccessToken;
 use app\kahuna\api\model\Agent;
 
-class AgentAuthController extends Controller
+class AuthAgentController extends Controller
 {
     public static function login($params, $data)
     {

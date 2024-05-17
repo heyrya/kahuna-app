@@ -2,40 +2,60 @@
 namespace app\kahuna\api\model;
 
 use app\kahuna\api\model\DBConnect;
+use \JsonSerializable;
+use \PDO;
 
-class Product
+class Product implements JsonSerializable
 {
     private static $db;
     private int $id;
     private string $serialId;
     private string $name;
     private int $warranty;
-    private int $customerId;
+    private int $registered;
 
-    public function __construct(?int $id = 0, ?string $serialId = null, ?string $name = null, ?int $warranty = 0, ?int $customerId = 0)
+    public function __construct(?int $id = 0, ?string $serialId = null, ?string $name = null, ?int $warranty = 0, ?int $registered = 0)
     {
         $this->id = $id;
         $this->serialId = $serialId;
-        $this->$name = $name;
-        $this->$warranty = $warranty;
-        $this->customerId = $customerId;
+        $this->name = $name;
+        $this->warranty = $warranty;
+        $this->registered = $registered;
         self::$db = DBConnect::getInstance()->getConnection();
     }
 
     public static function createProduct(Product $product): Product
     {
-        $sql = "INSERT INTO product (serialId, name, warranty, customerId) VALUES (:serialId, :name, :warranty, :customerId)";
+        $sql = "INSERT INTO productstock (serialId, name, warranty, registered) VALUES (:serialId, :name, :warranty, :registered)";
         $sth = self::$db->prepare($sql);
         $sth->bindValue('serialId', $product->getSerialId());
         $sth->bindValue('name', $product->getName());        
         $sth->bindValue('warranty', $product->getWarranty());        
-        $sth->bindValue('customerId', $product->getCustomerId());  
+        $sth->bindValue('registered', $product->getRegistered());  
         $sth->execute();
         
         if($sth->rowCount() > 0){
             $product->setId(self::$db->lastInsertId());
         }
         return $product;
+    }
+
+    public static function getProducts()
+    {
+        $sql = "SELECT serialId, name, warranty FROM productstock";
+        $sth = self::$db->prepare($sql);
+        $sth->execute();
+        $products = $sth->fetchAll(PDO::FETCH_FUNC, fn(...$fields) => new Product(...$fields));
+        return $products;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            "serialId"=>$this->getSerialId(),
+            "name"=>$this->getName(),
+            "warranty"=>$this->getWarranty(),
+        ];
     }
 
     
@@ -115,17 +135,17 @@ class Product
     /**
      * Get the value of customerId
      */
-    public function getCustomerId(): int
+    public function getRegistered(): int
     {
-        return $this->customerId;
+        return $this->registered;
     }
 
     /**
      * Set the value of customerId
      */
-    public function setCustomerId(int $customerId): self
+    public function setRegistered(int $register): self
     {
-        $this->customerId = $customerId;
+        $this->registered = $register;
 
         return $this;
     }

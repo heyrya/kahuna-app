@@ -30,9 +30,9 @@ $router->map('token', '/agent/token', 'AuthAgentController#verifyToken', 'auth_t
 /**----------------------*/
 
 /**Agent Product Routes----------------------*/
-$router->map('GET', '/products', 'ProductController#getAll', 'get_products');
+$router->map('GET', '/products', 'ProductController#getProducts', 'get_products');
 $router->map('GET', '/product/[i:id]', 'ProductController#get', 'get_product');
-$router->map('POST'. 'product', 'ProductController#createProduct', 'create_product');
+$router->map('POST', '/product', 'ProductController#createProduct', 'create_product');
 /**----------------------*/
 
 /**Ticket Routes----------------------*/
