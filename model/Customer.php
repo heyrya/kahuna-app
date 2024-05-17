@@ -1,0 +1,1 @@
+INSERT INTO `customer` (`id`, `name`, `surname`, `mob_no`, `email`, `password`, `accessLevel`) VALUES (NULL, 'George', 'Theo', '78542587', 'theo@live.com', 'pass', 'user'); 
