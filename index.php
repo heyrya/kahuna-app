@@ -8,13 +8,13 @@ use \AltoRouter;
 use app\kahuna\api\helper\ApiHelper;
 
 /** Vasic Settings----------------------*/
-$baseURI = '/kahuna-laptop';
+// $baseURI = '/kahuna-api';
 header("Content-Type: application/json; charser=UTF-8");
 ApiHelper::handleCors();
 /**----------------------*/
 
 $router = new AltoRouter();
-$router->setBasePath('/kahuna-app');
+// $router->setBasePath('/kahuna-app');
 
 
 /**Agent Routes----------------------*/

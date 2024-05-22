@@ -10,7 +10,7 @@ class DBConnect
 
     private function __construct()
     {
-        $env = parse_ini_file($_SERVER['DOCUMENT_ROOT'].'/kahuna-app/.env');
+        $env = parse_ini_file($_SERVER['DOCUMENT_ROOT'].'/.env');
         $this->dbh = new PDO(
             "mysql:host=localhost;dbname=kahuna_db",
             $env['DB_User'],
