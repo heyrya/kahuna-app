@@ -43,7 +43,7 @@ class Product implements JsonSerializable
     public static function getProducts()
     {
         self::$db = DBConnect::getInstance()->getConnection();
-        $sql = "SELECT serialId, name, warranty FROM productstock";
+        $sql = "SELECT id, serialId, name, warranty FROM productstock";
         $sth = self::$db->query($sql);
         $products = $sth->fetchAll(PDO::FETCH_FUNC, fn(...$fields) => new Product(...$fields));
         return $products;
