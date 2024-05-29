@@ -1,5 +1,8 @@
 ##Description
-The project uses the MVC architecture. The agent needs to register first. Once completed, the agent needs to sign in to have the token for a specified amount of time that the token is available. 
+The project uses the MVC architecture. 
+
+##Instructions
+The agent needs to register first. Once registration completed, the agent needs to sign in in order to have the required token for a specified amount of time available. 
 The agent cam do a number of requests for a number  of actions such as creating products, getting the products, viewing the tickets assigned to him and reply to them, etc. 
 
 ##Dependicies 
