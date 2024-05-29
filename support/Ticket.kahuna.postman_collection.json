@@ -1,0 +1,104 @@
+{
+	"info": {
+		"_postman_id": "457b0da5-e886-4743-a958-1646a0981706",
+		"name": "Ticket",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32898905"
+	},
+	"item": [
+		{
+			"name": "get tickets",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "83FAm6vPYkpwDktiffEiRCr9o/4"
+					},
+					{
+						"key": "x-api-user",
+						"value": "6"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URI}}/tickets",
+					"host": [
+						"{{BASE_URI}}"
+					],
+					"path": [
+						"tickets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get ticket",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "83FAm6vPYkpwDktiffEiRCr9o/4"
+					},
+					{
+						"key": "x-api-user",
+						"value": "6"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URI}}/ticket/16",
+					"host": [
+						"{{BASE_URI}}"
+					],
+					"path": [
+						"ticket",
+						"16"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reply ticket",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "3r83cAZG1qpUHadnTgjBTc8zSnc"
+					},
+					{
+						"key": "x-api-user",
+						"value": "6"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "16",
+							"type": "text"
+						},
+						{
+							"key": "ticketReply",
+							"value": "just checking",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{BASE_URI}}/ticket",
+					"host": [
+						"{{BASE_URI}}"
+					],
+					"path": [
+						"ticket"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

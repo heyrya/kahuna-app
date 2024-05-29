@@ -3,18 +3,16 @@
 namespace app\kahuna\api;
 
 require 'vendor/autoload.php';
-// require 'helper/ApiHelper.php';
+
 use \AltoRouter;
 use app\kahuna\api\helper\ApiHelper;
 
-/** Vasic Settings----------------------*/
-// $baseURI = '/kahuna-api';
+/** Basic Settings----------------------*/
 header("Content-Type: application/json; charser=UTF-8");
 ApiHelper::handleCors();
 /**----------------------*/
 
 $router = new AltoRouter();
-// $router->setBasePath('/kahuna-app');
 
 
 /**Agent Routes----------------------*/
@@ -26,7 +24,7 @@ $router->map('GET', '/agent/info', 'AgentController#getInfo', 'get_info');
 /**Agent Authentication Routes----------------------*/
 $router->map('POST', '/agent/login', 'AuthAgentController#login', 'auth_login');
 $router->map('POST', '/agent/logout', 'AuthAgentController#logout', 'auth_logout');
-$router->map('token', '/agent/token', 'AuthAgentController#verifyToken', 'auth_token');
+$router->map('GET', '/agent/token', 'AuthAgentController#verifyToken', 'auth_token');
 /**----------------------*/
 
 /**Agent Product Routes----------------------*/
@@ -36,9 +34,9 @@ $router->map('POST', '/product', 'ProductController#createProduct', 'create_prod
 /**----------------------*/
 
 /**Ticket Routes----------------------*/
-$router->map('GET', '/tickets', 'TicketController#getAll', 'get_tickets');
-$router->map('GET', '/ticket/[i:id]', 'TicketController#get', 'get_ticket');
-$router->map('POST', '/ticket', 'TicketController#newTicket', 'new_ticket');
+$router->map('GET', '/tickets', 'TicketController#getTickets', 'get_tickets');
+$router->map('GET', '/ticket/[i:id]', 'TicketController#getTicket', 'get_ticket');
+$router->map('POST', '/ticket', 'TicketController#replyTicket', 'reply_ticket');
 /**--------------------- -*/
 
 $match = $router->match();

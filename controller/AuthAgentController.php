@@ -3,6 +3,7 @@ namespace app\kahuna\api\controller;
 
 use app\kahuna\api\model\AccessToken;
 use app\kahuna\api\model\Agent;
+use app\kahuna\api\controller\Controller;
 
 class AuthAgentController extends Controller
 {
@@ -30,6 +31,15 @@ class AuthAgentController extends Controller
             self::sendResponse(data: ['message'=> 'Logged ou successfully']);
         }else{
             self::sendResponse(code: 403, error: "Missing, invalid or expired token");
+        }
+    }
+
+    public static function verifyToken($params, $data)
+    {
+        if(self::checkToken($data)){
+            self::sendResponse(data: ['valid' => true, 'token' => $data['api_token']]);
+        }else{
+            self::sendResponse(data: ['valid' => false, 'token' => $data['api_token']]);
         }
     }
 }

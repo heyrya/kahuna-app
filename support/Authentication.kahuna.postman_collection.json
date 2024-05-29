@@ -1,0 +1,140 @@
+{
+	"info": {
+		"_postman_id": "da67e662-b6cd-48c6-9b7b-53d187fcee95",
+		"name": "Authentication",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32898905"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "gianni@vibe.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "pass",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "gianni",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "lino",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{BASE_URI}}/agent/register",
+					"host": [
+						"{{BASE_URI}}"
+					],
+					"path": [
+						"agent",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "joe@ymail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "pass",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{BASE_URI}}/agent/login",
+					"host": [
+						"{{BASE_URI}}"
+					],
+					"path": [
+						"agent",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "Gpq1SGVf4Air6NzeDbybdm6sNZY"
+					},
+					{
+						"key": "x-api-user",
+						"value": "6"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URI}}/agent/logout",
+					"host": [
+						"{{BASE_URI}}"
+					],
+					"path": [
+						"agent",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verify token",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-user",
+						"value": "6"
+					},
+					{
+						"key": "x-api-key",
+						"value": "mcPzU6JEmSmorxIM/+rCEigAef8"
+					}
+				],
+				"url": {
+					"raw": "{{BASE_URI}}/agent/token",
+					"host": [
+						"{{BASE_URI}}"
+					],
+					"path": [
+						"agent",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

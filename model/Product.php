@@ -27,7 +27,6 @@ class Product implements JsonSerializable
     public static function createProduct(Product $product): Product
     {
         $sql = "INSERT INTO productstock (serialId, name, warranty, registered) VALUES (:serialId, :name, :warranty, :registered)";
-        var_dump(self::$db);
         $sth = self::$db->prepare($sql);
         $sth->bindValue('serialId', $product->getSerialId());
         $sth->bindValue('name', $product->getName());        
@@ -43,8 +42,8 @@ class Product implements JsonSerializable
 
     public static function getProducts()
     {
+        self::$db = DBConnect::getInstance()->getConnection();
         $sql = "SELECT serialId, name, warranty FROM productstock";
-        var_dump(self::$db);
         $sth = self::$db->query($sql);
         $products = $sth->fetchAll(PDO::FETCH_FUNC, fn(...$fields) => new Product(...$fields));
         return $products;

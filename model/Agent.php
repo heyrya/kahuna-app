@@ -52,7 +52,6 @@ class Agent implements JsonSerializable
         $sth->bindValue('email', $agent->getEmail());
         $sth->execute();
         $result = $sth->fetch(PDO::FETCH_OBJ);
-        var_dump($result);
         if($result && password_verify($agent->getPassword(), $result->password)){   
             return new Agent(
                 name: $result->name,
